@@ -1,0 +1,49 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>Sort Demos</title>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<p>123456789</p>
+<script type="text/javascript">
+	var A=new Array(34,6,24,9,1,-2,0,7,3);
+	jQuery(document).ready(function() {
+		print(A);
+		quickSort(A,0,A.length-1);
+		print(A);
+	});
+	function print(A){
+		$('body').append('<br/>');
+		for (var i=0;i<A.length;i++) {
+
+			$("body").append(A[i]+'  ');
+		};
+	}
+	function quickSort(A,p,r){
+		if(p>=r)
+			return;
+		var q=getPartion(A,p,r);
+		quickSort(A,p,q-1);
+		quickSort(A,q+1,r);
+	}
+	function getPartion(A,p,r){
+		var x=A[p];
+		var lower=p;
+		var higher=r;
+		while(lower<higher){
+			if(lower<higher&&A[higher]>=x){
+				higher--;
+			}
+			A[lower]=A[higher];
+			if(lower<higher&&A[lower]<=x){
+				lower++;
+			}
+			A[higher]=A[lower];
+		}
+		A[lower]=x;
+		return lower;
+	}
+</script>
+</body>
+</html>
